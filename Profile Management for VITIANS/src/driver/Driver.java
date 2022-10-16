@@ -13,6 +13,10 @@ import vitians.*;
 
 import java.util.Scanner;
 
+import exceptions.OptionInvalidException;
+import profile.Person;
+import profile.Profilable;
+
 /**
  * Driver class of the whole project.
  * @author sanjeev.rm
@@ -23,11 +27,13 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
+		// ArrayLists to store students, faculties, employees, and alumni profiles.
 		ArrayList<Student> studentsArrayList = new ArrayList<Student>();
 		ArrayList<Faculty> facultiesArrayList = new ArrayList<Faculty>();
 		ArrayList<Employee> employeesArrayList = new ArrayList<Employee>();
 		ArrayList<Alumni> alumniArrayList = new ArrayList<Alumni>();
 		
+		// This is where it starts.
 		Scanner sc = new Scanner(System.in);
 		System.out.println("WELCOME TO THE PROFILE MANAGEMENT SYSTEM FOR VITIANS");
 		while(true)
@@ -40,8 +46,7 @@ public class Driver
 				vitianOption = sc.nextInt();
 				if(vitianOption < 1 || vitianOption > 5)
 				{
-					System.out.println("\n~~~~~~Please enter a number between 1 and 5~~~~~~");
-					continue;
+					throw new OptionInvalidException(); // Custom exception.
 				}
 			}
 			catch(InputMismatchException ime)
@@ -49,37 +54,56 @@ public class Driver
 				System.out.println("\n~~~~~~Please enter only integers~~~~~~");
 				continue;
 			}
+			catch(OptionInvalidException oie)
+			{
+				System.out.println("\n~~~~~~Please enter a number between 1 and 5~~~~~~");
+				continue;
+			}
 			finally
 			{
 				sc.nextLine();
 			}
 			
-			boolean wantToExit = false;
+			boolean wantToExit = false; // Variable becomes true if the user wants to exit.
 			switch(vitianOption)
 			{
+			// Case 1 is for Student profile.
 			case 1 :
 				while(true)
 				{
 					displayCreateOrEditOption();
 					Integer createOrEditOption = sc.nextInt();
 					sc.nextLine();
+					
 					if(createOrEditOption == 1)
 					{
-						Student student = Student.inputUserInfo();
-						studentsArrayList.add(student);
-						student.displayProfile();
+						// This is for creating an profile.
+						Student student = Student.inputUserInfo(); // Creating profile.
+						studentsArrayList.add(student); // Adding the profile to the array list.
+						student.displayProfile(); // Displays profile.
 						System.out.println("<<<<<PROFILE CREATED>>>>>");
 						break;
 					}
 					else if(createOrEditOption == 2)
 					{
+						// This is for editing an profile.
+						
+						// Getting the id from the user.
 						System.out.print("Enter the registration number of profile to edit : ");
 						String registrationNumber = sc.nextLine();
+						
+						// Checks if there's an profile like that.
 						if(Student.getProfileIfInArrayList(studentsArrayList, registrationNumber) != null)
 						{
+							// We'll get that profile.
 							Student student = Student.getProfileIfInArrayList(studentsArrayList, registrationNumber);
+							
+							// Then we show that profile and ask for which option to edit and then get the edit option.
 							Integer optionToEdit = student.showProfileAndAskOptionToEdit();
+							
+							// Then we edit the profile by calling the editProfile(..) by passing in the option to edit.
 							student.editProfile(optionToEdit);
+							
 							System.out.println("\n<<<<<PROFILE EDITED>>>>>");
 							student.displayProfile();
 							break;
@@ -92,6 +116,7 @@ public class Driver
 					}
 					else if(createOrEditOption == 3)
 					{
+						// This is for when the user wants to exit.
 						wantToExit = true;
 						break;
 					}
@@ -101,7 +126,9 @@ public class Driver
 					}
 				}
 				break;
-			
+				
+				
+			// Case 2 is for Faculty profile.
 			case 2 :
 				while(true)
 				{
@@ -146,7 +173,8 @@ public class Driver
 					}
 				}
 				break;
-			
+				
+			// Case 3 is for Employee profile.
 			case 3 :
 				while(true)
 				{
@@ -191,7 +219,8 @@ public class Driver
 					}
 				}
 				break;
-			
+				
+			// Case 4 is for Alumni profile.
 			case 4 :
 				while(true)
 				{
@@ -236,7 +265,8 @@ public class Driver
 					}
 				}
 				break;
-			
+				
+			// Case 5 is for if the user wants to exit.
 			case 5 :
 				wantToExit = true;
 				break;
@@ -252,6 +282,15 @@ public class Driver
 		}
 		
 		System.out.println("*************************************************************\n" + "THANKS! FOR USING MY PROFILE MANAGEMENT SYSTEM\n" + "*************************************************************\n");
+		
+		System.out.println("\n*********************STUDENTS PROFILES*********************");
+		displayProfiles(studentsArrayList);
+		System.out.println("\n*********************FACULTIES PROFILES*********************");
+		displayProfiles(facultiesArrayList);
+		System.out.println("\n*********************EMPLOYEES PROFILES*********************");
+		displayProfiles(employeesArrayList);
+		System.out.println("\n*********************ALUMNI PROFILES*********************");
+		displayProfiles(alumniArrayList);
 	}
 	
 	/**
@@ -280,5 +319,20 @@ public class Driver
 		System.out.println("3. Exit");
 		System.out.println("******************************");
 		System.out.print("Enter option (1 or 2 or 3) : ");
+	}
+	
+	private static void displayProfiles(ArrayList profilesArrayList)
+	{
+		if(profilesArrayList.size() == 0)
+		{
+			System.out.println("No profiles created yet.");
+			return;
+		}
+		
+		for(int index = 0; index < profilesArrayList.size(); index++)
+		{
+			System.out.println("\n-------------------------------------------------------------------------------------\n" + profilesArrayList.get(index) + "-------------------------------------------------------------------------------------\n");
+			return;
+		}
 	}
 }
