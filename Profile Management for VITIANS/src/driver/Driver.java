@@ -13,6 +13,12 @@ import vitians.*;
 
 import java.util.Scanner;
 
+/**
+ * Driver class of the whole project.
+ * @author sanjeev.rm
+ *
+ * @since 1.0
+ */
 public class Driver
 {
 	public static void main(String[] args)
