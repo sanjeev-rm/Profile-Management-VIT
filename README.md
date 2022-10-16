@@ -21,3 +21,4 @@
 ## Current Status :
 
 ➤ 26th September, 2022 : Currently we are working on the Version 1.0
+➤ 16th October, 2022   : Finished Version 1.0
