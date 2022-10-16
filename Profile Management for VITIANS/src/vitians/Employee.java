@@ -182,7 +182,7 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 2 :
 			System.out.print("Enter new Gender : ");
-			this.setGender(sc.next());
+			this.setGender(sc.nextLine());
 			break;
 
 		case 3 :
@@ -193,12 +193,12 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 4 :
 			System.out.print("Enter updated Email : ");
-			this.setEmail(sc.next());
+			this.setEmail(sc.nextLine());
 			break;
 
 		case 5 :
 			System.out.print("Enter updated mobile number : ");
-			this.setMobile(sc.next());
+			this.setMobile(sc.nextLine());
 			break;
 
 		case 6 :
@@ -209,17 +209,17 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 7 :
 			System.out.print("Enter updated Employee ID : ");
-			this.setEmployeeID(sc.next());
+			this.setEmployeeID(sc.nextLine());
 			break;
 
 		case 8 :
 			System.out.print("Enter updated qualification : ");
-			this.setQualification(sc.next());
+			this.setQualification(sc.nextLine());
 			break;
 
 		case 9 :
 			System.out.print("Enter updated responsibility : ");
-			this.setResponsiblity(sc.next());
+			this.setResponsiblity(sc.nextLine());
 			break;
 
 		case 10 :

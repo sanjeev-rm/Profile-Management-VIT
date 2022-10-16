@@ -226,7 +226,7 @@ public class Faculty extends Person implements Profilable<Faculty>
 			
 		case 2 :
 			System.out.print("Enter new Gender : ");
-			this.setGender(sc.next());
+			this.setGender(sc.nextLine());
 			break;
 
 		case 3 :
@@ -237,12 +237,12 @@ public class Faculty extends Person implements Profilable<Faculty>
 
 		case 4 :
 			System.out.print("Enter updated Email : ");
-			this.setEmail(sc.next());
+			this.setEmail(sc.nextLine());
 			break;
 
 		case 5 :
 			System.out.print("Enter updated mobile number : ");
-			this.setMobile(sc.next());
+			this.setMobile(sc.nextLine());
 			break;
 
 		case 6 :
@@ -253,12 +253,12 @@ public class Faculty extends Person implements Profilable<Faculty>
 
 		case 7 :
 			System.out.print("Enter updated Faculty ID : ");
-			this.setFacultyID(sc.next());
+			this.setFacultyID(sc.nextLine());
 			break;
 
 		case 8 :
 			System.out.print("Enter updated responsibility : ");
-			this.setResponsibility(sc.next());
+			this.setResponsibility(sc.nextLine());
 			break;
 
 		case 9 :
@@ -269,12 +269,27 @@ public class Faculty extends Person implements Profilable<Faculty>
 
 		case 10 :
 			System.out.print("Enter updated school : ");
-			this.setSchool(sc.next());
+			this.setSchool(sc.nextLine());
 			break;
 
 		case 11 :
-			System.out.print("Enter updated years of experience : ");
-			this.setYearsOfExperience(sc.nextInt());
+			while(true)
+			{
+				System.out.print("Enter updated years of experience : ");
+				try
+				{
+					this.setYearsOfExperience(sc.nextInt());
+					break;
+				}
+				catch(InputMismatchException ime)
+				{
+					System.out.println("~~~~~~Please eneter an integer~~~~~");
+				}
+				finally
+				{
+					sc.nextLine();
+				}
+			}
 			break;
 
 		default :

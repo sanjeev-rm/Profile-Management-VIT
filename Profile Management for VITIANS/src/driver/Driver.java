@@ -39,7 +39,6 @@ public class Driver
 		while(true)
 		{
 			displayVitiansOption();
-			
 			Integer vitianOption;
 			try
 			{
@@ -52,7 +51,7 @@ public class Driver
 			catch(InputMismatchException ime)
 			{
 				System.out.println("\n~~~~~~Please enter only integers~~~~~~");
-				continue;
+				continue; // Continue would make the compiler go back to start of the loop.
 			}
 			catch(OptionInvalidException oie)
 			{
