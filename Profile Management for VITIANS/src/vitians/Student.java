@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
 import profile.Address;
-import profile.Date;
+import profile.CustomLocalDate;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -25,7 +25,7 @@ public class Student extends Person implements Profilable<Student>
     private Boolean isHosteller;
     private Integer expectedYearOfGraduation;
     
-    public Student(Name name, String gender, LocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation)
+    public Student(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation)
 	{
 		super(name, gender, dob, email, mobile, address);
 		this.registrationNumber = registrationNumber;
@@ -244,7 +244,7 @@ public class Student extends Person implements Profilable<Student>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			LocalDate dob = Date.inputDate();
+			CustomLocalDate dob = CustomLocalDate.inputDate();
 			this.setDob(dob);
 			break;
 

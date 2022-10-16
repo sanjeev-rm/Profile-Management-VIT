@@ -14,12 +14,12 @@ public class Person
 {
 	private Name name;
 	private String gender;
-	private LocalDate dob;
+	private CustomLocalDate dob;
 	private String email;
 	private String mobile;
 	private Address address;
 	
-	public Person(Name name, String gender, LocalDate dob, String email, String mobile, Address address) {
+	public Person(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address) {
 		this.name = name;
 		this.gender = gender;
 		this.dob = dob;
@@ -44,11 +44,11 @@ public class Person
 		this.gender = gender;
 	}
 
-	public LocalDate getDob() {
+	public CustomLocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(CustomLocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -93,7 +93,7 @@ public class Person
 	 */
 	public Integer getAge()
 	{
-		Integer age = Period.between(this.dob, LocalDate.now()).getYears();
+		Integer age = Period.between(this.dob.getLocalDate(), LocalDate.now()).getYears();
 		return age;
 	}
 	
@@ -113,7 +113,7 @@ public class Person
 		String gender = sc.next();
 		
 		System.out.printf("%-30s\n", "DOB");
-		LocalDate dob = Date.inputDate();
+		CustomLocalDate dob = CustomLocalDate.inputDate();
 		
 		System.out.printf("%-30s : ", "EMAIL");
 		String email = sc.next();

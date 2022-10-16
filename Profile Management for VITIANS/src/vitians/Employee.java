@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
 import profile.Address;
-import profile.Date;
+import profile.CustomLocalDate;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -22,9 +22,9 @@ public class Employee extends Person implements Profilable<Employee>
     private String employeeID;
     private String qualification;
     private String responsibility;
-    private LocalDate dateOfJoining;
+    private CustomLocalDate dateOfJoining;
     
-    public Employee(Name name, String gender, LocalDate dob, String email, String mobile, Address adress, String employeeID, String qualification, String responsiblity, LocalDate dateOfJoining)
+    public Employee(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address adress, String employeeID, String qualification, String responsiblity, CustomLocalDate dateOfJoining)
     {
 		super(name, gender, dob, email, mobile, adress);
 		this.employeeID = employeeID;
@@ -57,11 +57,11 @@ public class Employee extends Person implements Profilable<Employee>
         this.responsibility = responsiblity;
     }
     
-    public LocalDate getDateOfJoining() {
+    public CustomLocalDate getDateOfJoining() {
         return dateOfJoining;
     }
     
-    public void setDateOfJoining(LocalDate dateOfJoining) {
+    public void setDateOfJoining(CustomLocalDate dateOfJoining) {
         this.dateOfJoining = dateOfJoining;
     }
     
@@ -99,7 +99,7 @@ public class Employee extends Person implements Profilable<Employee>
     	String responsibility = sc.nextLine();
     	
     	System.out.println("DATE OF JOINING");
-    	LocalDate dateOfJoining = Date.inputDate();
+    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
     	
     	return new Employee(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), employeeID, qualification, responsibility, dateOfJoining);
     }
@@ -185,7 +185,7 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			LocalDate dob = Date.inputDate();
+			CustomLocalDate dob = CustomLocalDate.inputDate();
 			this.setDob(dob);
 			break;
 
@@ -222,7 +222,7 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 10 :
 			System.out.print("Enter updated date of joining");
-	    	LocalDate dateOfJoining = Date.inputDate();
+	    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
 	    	this.setDateOfJoining(dateOfJoining);
 			break;
 

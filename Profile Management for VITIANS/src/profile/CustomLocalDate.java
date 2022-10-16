@@ -6,17 +6,31 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.time.DateTimeException;
 
-public class Date
+public class CustomLocalDate
 {
+	private LocalDate localDate;
 	
-	public static void main(String[] args)
+	public CustomLocalDate(LocalDate date)
 	{
-		LocalDate date = Date.inputDate();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-YYYY");
-		System.out.println(date.format(dtf));
+		this.localDate = date;
 	}
 	
-	public static LocalDate inputDate()
+	public LocalDate getLocalDate() {
+		return localDate;
+	}
+
+	public void setLocalDate(LocalDate date) {
+		this.localDate = date;
+	}
+
+	@Override
+	public String toString()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+		return localDate.format(dtf);
+	}
+
+	public static CustomLocalDate inputDate()
 	{
 		while(true)
 		{
@@ -33,7 +47,7 @@ public class Date
 				System.out.printf("%-30s : ", "DAY");
 				int day = sc.nextInt();
 				
-				LocalDate date = LocalDate.of(year, month, day);
+				CustomLocalDate date = new CustomLocalDate(LocalDate.of(year, month, day));
 				return date;
 			}
 			catch(InputMismatchException ime)

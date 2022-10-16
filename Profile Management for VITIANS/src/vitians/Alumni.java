@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import profile.Address;
-import profile.Date;
+import profile.CustomLocalDate;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -23,7 +23,7 @@ public class Alumni extends Person implements Profilable<Alumni>
     private String degree;
     private String currentResidingPlace;
     
-    public Alumni(Name name, String gender, LocalDate dob, String email, String mobile, Address address, String alumniID, Integer yearOfGraduation, String degree, String currentResidingPlace)
+    public Alumni(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String alumniID, Integer yearOfGraduation, String degree, String currentResidingPlace)
     {
 		super(name, gender, dob, email, mobile, address);
 		this.alumniID = alumniID;
@@ -199,7 +199,7 @@ public class Alumni extends Person implements Profilable<Alumni>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			LocalDate dob = Date.inputDate();
+			CustomLocalDate dob = CustomLocalDate.inputDate();
 			this.setDob(dob);
 			break;
 

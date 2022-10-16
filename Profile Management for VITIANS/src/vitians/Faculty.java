@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
 import profile.Address;
-import profile.Date;
+import profile.CustomLocalDate;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -22,11 +22,11 @@ public class Faculty extends Person implements Profilable<Faculty>
 {
 	private String facultyID;
 	private String responsibility;
-	private LocalDate dateOfJoining;
+	private CustomLocalDate dateOfJoining;
 	private String school;
 	private Integer yearsOfExperience;
 	
-	public Faculty(Name name, String gender, LocalDate dob, String email, String mobile, Address address, String facultyID, String responsibility, LocalDate dateOfJoining, String school, Integer yearsOfExperience)
+	public Faculty(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String facultyID, String responsibility, CustomLocalDate dateOfJoining, String school, Integer yearsOfExperience)
 	{
 		super(name, gender, dob, email, mobile, address);
 		this.facultyID = facultyID;
@@ -52,11 +52,11 @@ public class Faculty extends Person implements Profilable<Faculty>
 		this.responsibility = responsibility;
 	}
 
-	public LocalDate getDateOfJoining() {
+	public CustomLocalDate getDateOfJoining() {
 		return dateOfJoining;
 	}
 
-	public void setDateOfJoining(LocalDate dateOfJoining) {
+	public void setDateOfJoining(CustomLocalDate dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 
@@ -84,7 +84,7 @@ public class Faculty extends Person implements Profilable<Faculty>
 	 */
 	public Integer getYearsInVIT()
 	{
-		return Period.between(dateOfJoining, LocalDate.now()).getYears();
+		return Period.between(this.dateOfJoining.getLocalDate(), LocalDate.now()).getYears();
 	}
 	
 	
@@ -121,7 +121,7 @@ public class Faculty extends Person implements Profilable<Faculty>
     	String responsibility = sc.nextLine();
     	
     	System.out.println("DATE OF JOINING");
-    	LocalDate dateOfJoining = Date.inputDate();
+    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
     	
     	System.out.printf("%-30s : ", "SCHOOL");
     	String school = sc.nextLine();
@@ -229,7 +229,7 @@ public class Faculty extends Person implements Profilable<Faculty>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			LocalDate dob = Date.inputDate();
+			CustomLocalDate dob = CustomLocalDate.inputDate();
 			this.setDob(dob);
 			break;
 
@@ -261,7 +261,7 @@ public class Faculty extends Person implements Profilable<Faculty>
 
 		case 9 :
 			System.out.print("Enter updated date of joining");
-	    	LocalDate dateOfJoining = Date.inputDate();
+	    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
 	    	this.setDateOfJoining(dateOfJoining);
 			break;
 
