@@ -71,9 +71,32 @@ public class Driver
 			case 1 :
 				while(true)
 				{
+					// This is to display the options.
+					// This is to get(input) the option to either create or edit profile.
 					displayCreateOrEditOption();
-					Integer createOrEditOption = sc.nextInt();
-					sc.nextLine();
+					Integer createOrEditOption;
+					try
+					{
+						createOrEditOption = sc.nextInt();
+						if(createOrEditOption < 1 || createOrEditOption > 3)
+						{
+							throw new OptionInvalidException();
+						}
+					}
+					catch(InputMismatchException ime)
+					{
+						System.out.println("\n~~~~~~Please eneter only integers~~~~~~");
+						continue;
+					}
+					catch(OptionInvalidException oie)
+					{
+						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
+						continue;
+					}
+					finally
+					{
+						sc.nextLine();
+					}
 					
 					if(createOrEditOption == 1)
 					{
@@ -120,10 +143,6 @@ public class Driver
 						wantToExit = true;
 						break;
 					}
-					else
-					{
-						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
-					}
 				}
 				break;
 				
@@ -132,9 +151,33 @@ public class Driver
 			case 2 :
 				while(true)
 				{
+					// This is to display the options.
+					// This is to get the option to either create or edit profile.
 					displayCreateOrEditOption();
-					Integer createOrEditOption = sc.nextInt();
-					sc.nextLine();
+					Integer createOrEditOption;
+					try
+					{
+						createOrEditOption = sc.nextInt();
+						if(createOrEditOption < 1 || createOrEditOption > 3)
+						{
+							throw new OptionInvalidException();
+						}
+					}
+					catch(InputMismatchException ime)
+					{
+						System.out.println("\n~~~~~~Please eneter only integers~~~~~~");
+						continue;
+					}
+					catch(OptionInvalidException oie)
+					{
+						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
+						continue;
+					}
+					finally
+					{
+						sc.nextLine();
+					}
+					
 					if(createOrEditOption == 1)
 					{
 						Faculty faculty = Faculty.inputUserInfo();
@@ -167,10 +210,6 @@ public class Driver
 						wantToExit = true;
 						break;
 					}
-					else
-					{
-						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
-					}
 				}
 				break;
 				
@@ -178,9 +217,33 @@ public class Driver
 			case 3 :
 				while(true)
 				{
+					// This is to display the options.
+					// This is to get the option to either create or edit profile.
 					displayCreateOrEditOption();
-					Integer createOrEditOption = sc.nextInt();
-					sc.nextLine();
+					Integer createOrEditOption;
+					try
+					{
+						createOrEditOption = sc.nextInt();
+						if(createOrEditOption < 1 || createOrEditOption > 3)
+						{
+							throw new OptionInvalidException();
+						}
+					}
+					catch(InputMismatchException ime)
+					{
+						System.out.println("\n~~~~~~Please eneter only integers~~~~~~");
+						continue;
+					}
+					catch(OptionInvalidException oie)
+					{
+						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
+						continue;
+					}
+					finally
+					{
+						sc.nextLine();
+					}
+					
 					if(createOrEditOption == 1)
 					{
 						Employee employee = Employee.inputUserInfo();
@@ -213,10 +276,6 @@ public class Driver
 						wantToExit = true;
 						break;
 					}
-					else
-					{
-						System.out.println("\n~~~~~~Please enter either 1 or 2~~~~~~");
-					}
 				}
 				break;
 				
@@ -224,9 +283,33 @@ public class Driver
 			case 4 :
 				while(true)
 				{
+					// This is to display the options.
+					// This is to get the option to either create or edit profile.
 					displayCreateOrEditOption();
-					Integer createOrEditOption = sc.nextInt();
-					sc.nextLine();
+					Integer createOrEditOption;
+					try
+					{
+						createOrEditOption = sc.nextInt();
+						if(createOrEditOption < 1 || createOrEditOption > 3)
+						{
+							throw new OptionInvalidException();
+						}
+					}
+					catch(InputMismatchException ime)
+					{
+						System.out.println("\n~~~~~~Please eneter only integers~~~~~~");
+						continue;
+					}
+					catch(OptionInvalidException oie)
+					{
+						System.out.println("\n~~~~~~Please enter either 1 or 2 or 3~~~~~~");
+						continue;
+					}
+					finally
+					{
+						sc.nextLine();
+					}
+					
 					if(createOrEditOption == 1)
 					{
 						Alumni alumni = Alumni.inputUserInfo();
@@ -313,7 +396,7 @@ public class Driver
 	 */
 	private static void displayCreateOrEditOption()
 	{
-		System.out.println("******************************");
+		System.out.println("\n******************************");
 		System.out.println("1. Create Profile");
 		System.out.println("2. Edit Profile");
 		System.out.println("3. Exit");
@@ -321,6 +404,10 @@ public class Driver
 		System.out.print("Enter option (1 or 2 or 3) : ");
 	}
 	
+	/**
+	 * This method is used to display all the profiles in the array list.
+	 * @param profilesArrayList
+	 */
 	private static void displayProfiles(ArrayList profilesArrayList)
 	{
 		if(profilesArrayList.size() == 0)
