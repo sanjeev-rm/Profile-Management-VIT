@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
 import profile.Address;
+import profile.Date;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -97,34 +98,8 @@ public class Employee extends Person implements Profilable<Employee>
     	System.out.printf("%-30s : ", "RESPONSIBILITY");
     	String responsibility = sc.nextLine();
     	
-    	LocalDate dateOfJoining;
-    	while(true)
-    	{
-    		try
-        	{
-        		System.out.println("DATE OF JOINING");
-            	System.out.printf("%-30s : ", "JOINING YEAR");
-            	Integer joiningYear = sc.nextInt();
-            	System.out.printf("%-30s : ", "JOINING MONTH");
-            	Integer joiningMonth = sc.nextInt();
-            	System.out.printf("%-30s : ", "JOINING DAY");
-            	Integer joiningDay = sc.nextInt();
-        		dateOfJoining = LocalDate.of(joiningYear, joiningMonth, joiningDay);
-        		break;
-        	}
-        	catch(InputMismatchException ime)
-        	{
-        		System.out.println("<Please enter only integers for date inputs>");
-        	}
-        	catch(DateTimeException dte)
-        	{
-        		System.out.println("<Please enter valid date inputs [month : 1 - 12] [day : 1 - 31]>");
-        	}
-    		finally
-    		{
-    			sc.nextLine();
-    		}
-    	}
+    	System.out.println("DATE OF JOINING");
+    	LocalDate dateOfJoining = Date.inputDate();
     	
     	return new Employee(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), employeeID, qualification, responsibility, dateOfJoining);
     }
@@ -210,13 +185,7 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			System.out.printf("%-30s : ", "BIRTH YEAR");
-			int year = sc.nextInt();
-			System.out.printf("%-30s : ", "BIRTH MONTH");
-			int month = sc.nextInt();
-			System.out.printf("%-30s : ", "BIRTH DAY");
-			int day = sc.nextInt();
-			LocalDate dob = LocalDate.of(year, month, day);
+			LocalDate dob = Date.inputDate();
 			this.setDob(dob);
 			break;
 
@@ -253,13 +222,7 @@ public class Employee extends Person implements Profilable<Employee>
 
 		case 10 :
 			System.out.print("Enter updated date of joining");
-	    	System.out.printf("%-30s : ", "JOINING YEAR");
-	    	Integer joiningYear = sc.nextInt();
-	    	System.out.printf("%-30s : ", "JOINING MONTH");
-	    	Integer joiningMonth = sc.nextInt();
-	    	System.out.printf("%-30s : ", "JOINING DAY");
-	    	Integer joiningDay = sc.nextInt();
-	    	LocalDate dateOfJoining = LocalDate.of(joiningYear, joiningMonth, joiningDay);
+	    	LocalDate dateOfJoining = Date.inputDate();
 	    	this.setDateOfJoining(dateOfJoining);
 			break;
 

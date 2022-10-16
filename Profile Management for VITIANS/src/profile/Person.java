@@ -112,34 +112,8 @@ public class Person
 		System.out.printf("%-30s : ", "GENDER");
 		String gender = sc.next();
 		
-		LocalDate dob;
-		while(true)
-		{
-			try
-			{
-				System.out.printf("%-30s\n", "DOB");
-				System.out.printf("%-30s : ", "BIRTH YEAR");
-				int year = sc.nextInt();
-				System.out.printf("%-30s : ", "BIRTH MONTH");
-				int month = sc.nextInt();
-				System.out.printf("%-30s : ", "BIRTH DAY");
-				int day = sc.nextInt();
-				dob = LocalDate.of(year, month, day);
-				break;
-			}
-			catch(InputMismatchException ime)
-			{
-				System.out.println("<Please enter only integers for date inputs>");
-			}
-			catch(DateTimeException dte)
-			{
-				System.out.println("<Please enter valid date inputs [month : 1 - 12] [day : 1 - 31]>");
-			}
-			finally
-			{
-				sc.nextLine();
-			}
-		}
+		System.out.printf("%-30s\n", "DOB");
+		LocalDate dob = Date.inputDate();
 		
 		System.out.printf("%-30s : ", "EMAIL");
 		String email = sc.next();

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
 import profile.Address;
+import profile.Date;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
@@ -243,13 +244,7 @@ public class Student extends Person implements Profilable<Student>
 
 		case 3 :
 			System.out.print("Enter new DOB");
-			System.out.printf("%-30s : ", "BIRTH YEAR");
-			int year = sc.nextInt();
-			System.out.printf("%-30s : ", "BIRTH MONTH");
-			int month = sc.nextInt();
-			System.out.printf("%-30s : ", "BIRTH DAY");
-			int day = sc.nextInt();
-			LocalDate dob = LocalDate.of(year, month, day);
+			LocalDate dob = Date.inputDate();
 			this.setDob(dob);
 			break;
 
