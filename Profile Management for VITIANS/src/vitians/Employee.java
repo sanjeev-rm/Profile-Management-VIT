@@ -16,6 +16,8 @@ import profile.Profilable;
 /**
  * This class represents an profile of an Employee of VIT.
  * @author sanjeev.rm
+ *
+ * @since 1.0
  */
 public class Employee extends Person implements Profilable<Employee>
 {

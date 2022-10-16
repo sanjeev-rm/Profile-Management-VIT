@@ -6,6 +6,8 @@ import java.util.Scanner;
 /**
  * This class contains the properties of an address.
  * @author sanjeev.rm
+ *
+ * @since 1.0
  */
 public class Address
 {

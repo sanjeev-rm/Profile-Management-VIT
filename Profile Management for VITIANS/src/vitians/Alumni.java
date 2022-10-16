@@ -15,6 +15,8 @@ import exceptions.OptionInvalidException;
 /**
  * This class represents an profile of an Alumni of VIT.
  * @author sanjeev.rm
+ *
+ * @since 1.0
  */
 public class Alumni extends Person implements Profilable<Alumni>
 {

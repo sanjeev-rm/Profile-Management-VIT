@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * This interface contains methods that are common to all the classes which could have a profile.
  * @author Sanjeev.rm
  * @param <T> --> This represents the type of the arguments of the abstract methods declared in the interface. I have not used any right now but I removed it due to some issues, but I might in the future..
+ *
+ * @since 1.0
  */
 public interface Profilable<T>
 {

@@ -6,6 +6,17 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.time.DateTimeException;
 
+/**
+ * This class is a customized version of LocalDate.
+ * This class consist of only one property which is a LocalDate.
+ * This class is specially created for this project only.
+ * This was created to have a special toString() for LocalDate and a common input method for all dates in all classes.
+ * This was created to reduce repetitiveness in code.
+ * @author sanjeev.rm
+ *
+ * @since 1.0
+ */
+// First I thought of extending LocalDate class but that's not possible as LocalDate is an final class.
 public class CustomLocalDate
 {
 	private LocalDate localDate;
@@ -22,14 +33,20 @@ public class CustomLocalDate
 	public void setLocalDate(LocalDate date) {
 		this.localDate = date;
 	}
-
+	
 	@Override
 	public String toString()
 	{
+		// This is used to format the date i.e. the way we want to show the date.
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-YYYY");
 		return localDate.format(dtf);
 	}
-
+	
+	/**
+	 * This method is used to input date component values such as YEAR, MONTH, and DAY.
+	 * This method uses scanner and inputs these data from the user and returns to you CustomLocalDate object.
+	 * @return CustomLocalDate
+	 */
 	public static CustomLocalDate inputDate()
 	{
 		while(true)

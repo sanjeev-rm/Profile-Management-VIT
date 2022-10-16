@@ -5,6 +5,8 @@ import java.util.Scanner;
 /**
  * This class contains the properties of a name.
  * @author sanjeev.rm
+ *
+ * @since 1.0
  */
 public class Name
 {
