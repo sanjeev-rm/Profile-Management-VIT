@@ -56,26 +56,32 @@ public class CustomLocalDate
 			
 			try
 			{
+				// Inputing year.
 				System.out.printf("%-30s : ", "YEAR");
 				int year = sc.nextInt();
 				int currentYear = LocalDate.now().getYear();
-				// If year inputed by user is greater than current year then throws exception as properties like dob can't be in the future.
+				// Exception is thrown when entered year is greater than current year. Or if the years in between now and the entered year is greater than 100.
 				if((year > currentYear) || ((currentYear - year) > 100))
 				{
-					throw new DateTimeException("Enter valid year input");
+					throw new DateTimeException("Invalid value for year (valid values : within 100 years in the past) : " + year);
 				}
 				
+				// Inputing month of year.
 				System.out.printf("%-30s : ", "MONTH");
 				int month = sc.nextInt();
 				
+				
+				// Inputing day of month.
 				System.out.printf("%-30s : ", "DAY");
 				int day = sc.nextInt();
 				
+				
+				// Creating entered date.
 				LocalDate inputedLocalDate = LocalDate.of(year,  month, day);
-				int daysInBetween = Period.between(inputedLocalDate, LocalDate.now()).getYears();
-				if(daysInBetween > 120)
+				// Exception is thrown if the entered date comes after the current date.
+				if(inputedLocalDate.isAfter(LocalDate.now()))
 				{
-					throw new DateTimeException("Really over 120 years?");
+					throw new DateTimeException("Inputed date is in the future");
 				}
 				
 				CustomLocalDate date = new CustomLocalDate(inputedLocalDate);
@@ -87,7 +93,7 @@ public class CustomLocalDate
 			}
 			catch(DateTimeException dte)
 			{
-				System.out.println("<Please enter valid date inputs [year : valid year] [month : 1 - 12] [day : 1 - 31]>");
+				System.out.println("<Please enter valid date inputs [year : valid year] [month : 1 - 12] [day : 1 - 28/31]>");
 				System.out.printf("<%s>\n", dte.getMessage());
 			}
 			finally
