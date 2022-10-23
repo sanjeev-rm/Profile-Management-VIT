@@ -1,6 +1,7 @@
 package profile;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -70,7 +71,14 @@ public class CustomLocalDate
 				System.out.printf("%-30s : ", "DAY");
 				int day = sc.nextInt();
 				
-				CustomLocalDate date = new CustomLocalDate(LocalDate.of(year, month, day));
+				LocalDate inputedLocalDate = LocalDate.of(year,  month, day);
+				int daysInBetween = Period.between(inputedLocalDate, LocalDate.now()).getYears();
+				if(daysInBetween > 120)
+				{
+					throw new DateTimeException("Really over 120 years?");
+				}
+				
+				CustomLocalDate date = new CustomLocalDate(inputedLocalDate);
 				return date;
 			}
 			catch(InputMismatchException ime)
