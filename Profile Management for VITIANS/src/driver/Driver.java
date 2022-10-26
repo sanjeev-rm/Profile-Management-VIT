@@ -9,7 +9,7 @@ import vitians.Employee;
 import vitians.Alumni;
 
 // Instead of writing all the lines above to import classes of package vitians. As we are technically importing all the classes we can just write -->
-import vitians.*;
+//import vitians.*;
 
 import java.util.Scanner;
 
@@ -405,7 +405,7 @@ public class Driver
 	
 	/**
 	 * This method is used to display all the profiles in the array list.
-	 * @param profilesArrayList
+	 * @param profilesArrayList --> ArrayList of profiles.
 	 */
 	private static void displayProfiles(ArrayList profilesArrayList)
 	{
