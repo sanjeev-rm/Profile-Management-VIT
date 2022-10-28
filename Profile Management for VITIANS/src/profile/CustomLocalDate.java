@@ -77,7 +77,7 @@ public class CustomLocalDate
 				
 				
 				// Creating entered date.
-				LocalDate inputedLocalDate = LocalDate.of(year,  month, day);
+				LocalDate inputedLocalDate = LocalDate.of(year, month, day);
 				// Exception is thrown if the entered date comes after the current date.
 				if(inputedLocalDate.isAfter(LocalDate.now()))
 				{
