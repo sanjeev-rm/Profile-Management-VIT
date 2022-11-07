@@ -1,31 +1,35 @@
-# Profile-Management-VIT
+# Profile Management [Version 1.0]
+- This is the version 1.0 of the Profile Managaement System project.
 
-➤ We are creating an profile management system for VITIANS.
+# The Project
+## Profile-Management-VIT
 
-➤ We are working in an systematic manner.
+- We are creating an profile management system for VITIANS.
 
-➤ We are manifesting this project to come out in different versions :
+- We are working in an systematic manner.
 
-## Namely :
+- We are manifesting this project to come out in different versions :
 
-➤ **Version 1.0 :** This is an command line based system where the user inputs data. The data is stored during runtime but then after the program terminates the data is lost.
+### Versions :
 
-➤ **Verison 1.1 :** This version will be storing the data given by the user. Using the concepts of File I/O.
+- **Version 1.0 :** This is an command line based system where the user inputs data. The data is stored during runtime but then after the program terminates the data is lost. Check it out [version 1.0](https://github.com/sanjeev-rm/Profile-Management-VIT.git)
 
-➤ **Version 1.2 :** This version will be using DBMS[Date Base Management System].
+- **Verison 1.1 :** This version will be storing the data given by the user. Using the concepts of File I/O.
 
-➤ **Version 1.3 :** This version is going to be an Android App.
+- **Version 1.2 :** This version will be using DBMS[Date Base Management System].
 
-➤ **Version 1.3.O :** This version is going to be an iOS App.
+- **Version 1.3 :** This version is going to be an Android App.
 
-  ---> Version 1.3.O.1 : This version is an iOS app but without any DBMS.
+- **Version 1.3.O :** This version is going to be an iOS App.
+
+  - Version 1.3.O.1 : This version is an iOS app but without any DBMS. Check it out [version 1.3.O.1.Beta](https://github.com/sanjeev-rm/Profile-Management-System-XCode.git)
   
-  ---> Version 1.3.O.2 : This version is an iOS app with DBMS.
+  - Version 1.3.O.2 : This version is an iOS app with DBMS.
 
-## Current Status :
+### Current Status :
 
-➤ 26th September, 2022 : Currently we are working on the Version 1.0
+- 26th September, 2022 : Currently we are working on the Version 1.0
 
-➤ 16th October, 2022 : Finished Version 1.0 (Beta)
+- 16th October, 2022 : Finished Version 1.0 (Beta)
 
-➤ 22th October, 2022 : Started creating Version 1.3.O.1
+- 22th October, 2022 : Started creating Version 1.3.O.1
