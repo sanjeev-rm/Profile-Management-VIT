@@ -12,7 +12,7 @@
 
 ### Versions :
 
-- **Version 1.0 :** This is an command line based system where the user inputs data. The data is stored during runtime but then after the program terminates the data is lost. Check it out [version 1.0](https://github.com/sanjeev-rm/Profile-Management-VIT.git)
+- **Version 1.0 :** This is an command line based system where the user inputs data. The data is stored during runtime but then after the program terminates the data is lost. **Check out [version 1.0](https://github.com/sanjeev-rm/Profile-Management-VIT.git)**
 
 - **Verison 1.1 :** This version will be storing the data given by the user. Using the concepts of File I/O.
 
@@ -22,7 +22,7 @@
 
 - **Version 1.3.O :** This version is going to be an iOS App.
 
-  - Version 1.3.O.1 : This version is an iOS app but without any DBMS. Check it out [version 1.3.O.1.Beta](https://github.com/sanjeev-rm/Profile-Management-System-XCode.git)
+  - Version 1.3.O.1 : This version is an iOS app but without any DBMS. **Check out [version 1.3.O.1.Beta](https://github.com/sanjeev-rm/Profile-Management-System-XCode.git)**
   
   - Version 1.3.O.2 : This version is an iOS app with DBMS.
 
