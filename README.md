@@ -1,6 +1,6 @@
 # Profile Management System [Version 1.0]
-This is an Java application(program).
-This is a command line based application, where the user inputs data, the data is stored during runtime but then after the program terminates the data is lost.
+- This is an Java application.
+- This is a command line based application, where the user inputs data, the data is stored during runtime but then after the program terminates the data is lost.
 
 # The Project
 ## Profile-Management-VIT
