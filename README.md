@@ -1,5 +1,5 @@
 # Profile Management System [Version 1.0]
-This is the version 1.0 of the Profile Managaement System project.
+This is the version 1.0 of the Profile Management System project.
 
 # The Project
 ## Profile-Management-VIT
