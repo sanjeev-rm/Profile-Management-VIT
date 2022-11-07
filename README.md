@@ -16,10 +16,16 @@
 
 ➤ **Version 1.3 :** This version is going to be an Android App.
 
-➤ **Versino 1.3.O :** This version is going to be an iOS App.
+➤ **Version 1.3.O :** This version is going to be an iOS App.
+
+  ---> Version 1.3.O.1 : This version is an iOS app but without any DBMS.
+  
+  ---> Version 1.3.O.2 : This version is an iOS app with DBMS.
 
 ## Current Status :
 
 ➤ 26th September, 2022 : Currently we are working on the Version 1.0
 
 ➤ 16th October, 2022 : Finished Version 1.0 (Beta)
+
+➤ 22th October, 2022 : Started creating Version 1.3.O.1
