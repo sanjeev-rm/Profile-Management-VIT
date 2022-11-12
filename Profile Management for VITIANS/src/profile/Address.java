@@ -2,6 +2,8 @@ package profile;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import validators.profileValidators.AddressValidator;
+import exceptions.CountryInvalidException;
 
 /**
  * This class contains the properties of an address.
@@ -17,9 +19,22 @@ public class Address
 	private String state;
 	private String country;
 	private String pincode;
-	
-	public Address(String houseNo, String area, String city, String state, String country, String pincode)
+
+	/**
+	 * Contructor of class Address.
+	 * @param houseNo
+	 * @param area
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @param pincode
+	 * @throws CountryInvalidException
+	 */
+	public Address(String houseNo, String area, String city, String state, String country, String pincode) throws CountryInvalidException
 	{
+		// Validates country input before before initializing it as a property. This throws an exception if not valid.
+		AddressValidator.validateCountry(country);
+		
 		this.houseNo = houseNo;
 		this.area = area;
 		this.city = city;
@@ -107,13 +122,37 @@ public class Address
 		System.out.printf("%-30s : ", "STATE");
 		String state = sc.nextLine();
 		
-		System.out.printf("%-30s : ", "COUNTRY");
-		String country = sc.nextLine();
+		String country;
+		while(true)
+		{
+			try
+			{
+				System.out.printf("%-30s : ", "COUNTRY");
+				country = sc.nextLine();
+				AddressValidator.validateCountry(country);
+				break;
+			}
+			catch(CountryInvalidException cie)
+			{
+				System.out.printf("<%s>\n", cie.getMessage());
+			}
+		}
 		
 		System.out.printf("%-30s : ", "PINCODE");
 		String pincode = sc.next();
 		sc.nextLine();
 		
-		return new Address(houseNo, area, city, state, country, pincode);
+		/*
+		 * Writing nothing inside the catch block because while creating this object the properties are already verified.
+		 * Therefore this would never throw CountryInvalidException.
+		 * This is trying to create like try! in swift.
+		 */
+		try
+		{
+			return new Address(houseNo, area, city, state, country, pincode);
+		}catch(CountryInvalidException e)
+		{
+		}
+		return null; // As already mentioned therefore, will never return null. It will never reach this code. It'll just execute try block completely.
 	}
 }
