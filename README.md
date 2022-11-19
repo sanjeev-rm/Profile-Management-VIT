@@ -2,6 +2,9 @@
 - This is an Java application.
 - This is a command line based application, where the user inputs data, the data is stored during runtime but then after the program terminates the data is lost.
 
+## Working
+https://user-images.githubusercontent.com/67138194/202849043-2578c6bc-de42-475d-b2b7-0527e9a5fdaf.mp4
+
 # The Project
 ## Profile-Management-VIT
 
