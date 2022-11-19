@@ -11,11 +11,15 @@ import profile.CustomLocalDate;
 import profile.Name;
 import profile.Person;
 import profile.Profilable;
+import validators.StudentValidator;
+import exceptions.studentExceptions.StudentException;
+import exceptions.studentExceptions.RegistrationNumberInvalidException;
 
 /**
  * This class represents an profile of an Student of VIT.
  * @author sanjeev.rm
  *
+ * @version 1.0
  * @since 1.0
  */
 public class Student extends Person implements Profilable<Student>
@@ -27,10 +31,13 @@ public class Student extends Person implements Profilable<Student>
     private Boolean isHosteller;
     private Integer expectedYearOfGraduation;
     
-    public Student(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation)
+    public Student(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation) throws StudentException
 	{
-		super(name, gender, dob, email, mobile, address);
-		this.registrationNumber = registrationNumber;
+    	super(name, gender, dob, email, mobile, address);
+    	
+    	StudentValidator.validateRegistrationNumber(registrationNumber);
+    	
+    	this.registrationNumber = registrationNumber;
 		this.program = program;
 		this.branch = branch;
 		this.school = school;
@@ -42,7 +49,9 @@ public class Student extends Person implements Profilable<Student>
 		return registrationNumber;
 	}
 
-	public void setRegistrationNumber(String registrationNumber) {
+	public void setRegistrationNumber(String registrationNumber) throws RegistrationNumberInvalidException
+	{
+		StudentValidator.validateRegistrationNumber(registrationNumber);
 		this.registrationNumber = registrationNumber;
 	}
 
@@ -118,9 +127,22 @@ public class Student extends Person implements Profilable<Student>
     	
     	Person person = Person.inputUserInfo();
     	
-    	System.out.printf("%-30s : ", "REGISTRATION NUMBER");
-    	String registrationNumber = sc.next();
-    	sc.nextLine();
+    	String registrationNumber;
+    	while(true)
+    	{
+    		try
+    		{
+    			System.out.printf("%-30s : ", "REGISTRATION NUMBER");
+    			registrationNumber = sc.next();
+    	    	sc.nextLine();
+    	    	StudentValidator.validateRegistrationNumber(registrationNumber);
+    	    	break;
+    		}
+    		catch(StudentException se)
+    		{
+    			System.out.println("<%s>".formatted(se.getMessage()));
+    		}
+    	}
     	
     	System.out.printf("%-30s : ", "PROGRAM");
     	String program = sc.nextLine();
@@ -162,7 +184,19 @@ public class Student extends Person implements Profilable<Student>
     		}
     	}
     	
-    	return new Student(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), registrationNumber, program, branch, school, isHosteller, expectedYearOfGraduation);
+    	/*
+		 * Writing nothing inside the catch block because while creating this object the properties are already verified.
+		 * Therefore this would never throw StudentException.
+		 * This is trying to create like try! in swift.
+		 */
+    	try
+    	{
+    		return new Student(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), registrationNumber, program, branch, school, isHosteller, expectedYearOfGraduation);
+    	}
+    	catch(StudentException se)
+    	{
+    	}
+    	return null; // As already mentioned therefore, will never return null. It will never reach this code. It'll just execute try block completely.
     }
     
     
@@ -267,8 +301,19 @@ public class Student extends Person implements Profilable<Student>
 			break;
 
 		case 7 :
-			System.out.print("Enter updated Registration Number : ");
-			this.setRegistrationNumber(sc.nextLine());
+			while(true)
+			{
+				try
+				{
+					System.out.print("Enter updated Registration Number : ");
+					this.setRegistrationNumber(sc.nextLine());
+					break;
+				}
+				catch(StudentException se)
+				{
+					System.out.println("<%s>".formatted(se.getMessage()));
+				}
+			}
 			break;
 
 		case 8 :

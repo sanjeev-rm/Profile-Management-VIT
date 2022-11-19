@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.personExceptions;
 
 /**
  * This exception is thrown when the country is invalid.

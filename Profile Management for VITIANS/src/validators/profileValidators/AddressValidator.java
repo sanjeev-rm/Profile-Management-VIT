@@ -1,11 +1,13 @@
 package validators.profileValidators;
 
 import java.net.URL;
+
+import exceptions.personExceptions.CountryInvalidException;
+
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.net.MalformedURLException;
 import java.io.IOException;
-import exceptions.CountryInvalidException;
 
 /**
  * This class consists of methods that validate properties of an Address.
@@ -19,8 +21,10 @@ public class AddressValidator
 	/**
 	 * This method validates country.
 	 * Throws an exception if the country entered is not a valid country.
+	 * Network connectivity is required to run this method.
 	 * @param country --> String country to validate.
 	 * @throws CountryInvalidException
+	 * @disclaimer Network connection is required.
 	 */
 	/*
 	 * This method reads an data-set in the form of csv from the Internet. and checks if the country is present in the file.
@@ -57,6 +61,7 @@ public class AddressValidator
 		catch(IOException ioe)
 		{
 			System.out.printf("<Input/Output Exception [%s]>\n", ioe.getMessage());
+			throw new CountryInvalidException("Please check your network connection");
 		}
 	}
 }

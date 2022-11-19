@@ -2,8 +2,9 @@ package profile;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import exceptions.personExceptions.CountryInvalidException;
 import validators.profileValidators.AddressValidator;
-import exceptions.CountryInvalidException;
 
 /**
  * This class contains the properties of an address.
