@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import exceptions.personExceptions.PersonException;
+import validators.profileValidators.PersonValidator;
 
 /**
  * This class contains the properties of an person.
  * @author sanjeev.rm
  *
+ * @version 1.0
  * @since 1.0
  */
 public class Person
@@ -21,7 +24,10 @@ public class Person
 	private String mobile;
 	private Address address;
 	
-	public Person(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address) {
+	public Person(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address) throws PersonException
+	{
+		PersonValidator.validateMobile(mobile);
+		
 		this.name = name;
 		this.gender = gender;
 		this.dob = dob;
@@ -66,7 +72,9 @@ public class Person
 		return mobile;
 	}
 
-	public void setMobile(String mobile) {
+	public void setMobile(String mobile) throws PersonException
+	{
+		PersonValidator.validateMobile(mobile);
 		this.mobile = mobile;
 	}
 
@@ -120,11 +128,35 @@ public class Person
 		System.out.printf("%-30s : ", "EMAIL");
 		String email = sc.next();
 		
-		System.out.printf("%-30s : ", "MOBILE");
-		String mobile = sc.next();
+		String mobile;
+		while(true)
+		{
+			try
+			{
+				System.out.printf("%-30s : ", "MOBILE");
+				mobile = sc.next();
+				PersonValidator.validateMobile(mobile);
+				break;
+			}
+			catch(PersonException pe)
+			{
+				System.out.println("<%s>".formatted(pe.getMessage()));
+			}
+			finally
+			{
+				sc.nextLine();
+			}
+		}
 		
 		Address address = Address.inputUserInfo();
 		
-		return new Person(name, gender, dob, email, mobile, address);
+		try
+		{
+			return new Person(name, gender, dob, email, mobile, address);
+		}
+		catch(PersonException pe)
+		{
+		}
+		return null;
 	}
 }
