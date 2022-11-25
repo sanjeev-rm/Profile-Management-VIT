@@ -27,6 +27,7 @@ public class Person
 	public Person(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address) throws PersonException
 	{
 		PersonValidator.validateMobile(mobile);
+		PersonValidator.validateEmail(email);
 		
 		this.name = name;
 		this.gender = gender;
@@ -63,15 +64,27 @@ public class Person
 	public String getEmail() {
 		return email;
 	}
-
-	public void setEmail(String email) {
+	
+	/**
+	 * Setter for email property of class Person.
+	 * @param email
+	 * @throws PersonException
+	 */
+	public void setEmail(String email) throws PersonException
+	{
+		PersonValidator.validateEmail(email);
 		this.email = email;
 	}
 
 	public String getMobile() {
 		return mobile;
 	}
-
+	
+	/**
+	 * Setter for mobile property of class Person.
+	 * @param mobile
+	 * @throws PersonException
+	 */
 	public void setMobile(String mobile) throws PersonException
 	{
 		PersonValidator.validateMobile(mobile);
@@ -125,8 +138,25 @@ public class Person
 		System.out.printf("%-30s\n", "DOB");
 		CustomLocalDate dob = CustomLocalDate.inputDate();
 		
-		System.out.printf("%-30s : ", "EMAIL");
-		String email = sc.next();
+		String email;
+		while(true)
+		{
+			try
+			{
+				System.out.printf("%-30s : ", "EMAIL");
+				email = sc.next();
+				PersonValidator.validateEmail(email);
+				break;
+			}
+			catch(PersonException pe)
+			{
+				System.out.println("<%s>".formatted(pe.getMessage()));
+			}
+			finally
+			{
+				sc.nextLine();
+			}
+		}
 		
 		String mobile;
 		while(true)
