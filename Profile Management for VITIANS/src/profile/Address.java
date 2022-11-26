@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import exceptions.personExceptions.CountryInvalidException;
 import validators.profileValidators.AddressValidator;
+import exceptions.personExceptions.AddressException;
+import exceptions.personExceptions.CityInvalidException;
 
 /**
  * This class contains the properties of an address.
@@ -31,10 +33,11 @@ public class Address
 	 * @param pincode
 	 * @throws CountryInvalidException
 	 */
-	public Address(String houseNo, String area, String city, String state, String country, String pincode) throws CountryInvalidException
+	public Address(String houseNo, String area, String city, String state, String country, String pincode) throws AddressException
 	{
-		// Validates country input before before initializing it as a property. This throws an exception if not valid.
+		// Validates property input before before initializing it as a property. This throws an exception if not valid.
 		AddressValidator.validateCountry(country);
+		AddressValidator.validateCity(city);
 		
 		this.houseNo = houseNo;
 		this.area = area;
@@ -64,7 +67,9 @@ public class Address
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(String city) throws CityInvalidException
+	{
+		AddressValidator.validateCity(city);
 		this.city = city;
 	}
 
@@ -80,7 +85,9 @@ public class Address
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(String country) throws CountryInvalidException
+	{
+		AddressValidator.validateCountry(country);
 		this.country = country;
 	}
 
@@ -117,8 +124,21 @@ public class Address
 		System.out.printf("%-30s : ", "AREA");
 		String area = sc.nextLine();
 		
-		System.out.printf("%-30s : ", "CITY");
-		String city = sc.nextLine();
+		String city;
+		while(true)
+		{
+			try
+			{
+				System.out.printf("%-30s : ", "CITY");
+				city = sc.nextLine();
+				AddressValidator.validateCity(city);
+				break;
+			}
+			catch(CityInvalidException cie)
+			{
+				System.out.println("<%s>".formatted(cie.getMessage()));
+			}
+		}
 		
 		System.out.printf("%-30s : ", "STATE");
 		String state = sc.nextLine();
@@ -151,7 +171,7 @@ public class Address
 		try
 		{
 			return new Address(houseNo, area, city, state, country, pincode);
-		}catch(CountryInvalidException e)
+		}catch(AddressException e)
 		{
 		}
 		return null; // As already mentioned therefore, will never return null. It will never reach this code. It'll just execute try block completely.

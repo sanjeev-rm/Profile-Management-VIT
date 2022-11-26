@@ -2,6 +2,7 @@ package validators.profileValidators;
 
 import java.net.URL;
 
+import exceptions.personExceptions.CityInvalidException;
 import exceptions.personExceptions.CountryInvalidException;
 
 import java.io.InputStreamReader;
@@ -18,6 +19,48 @@ import java.io.IOException;
  */
 public class AddressValidator
 {
+	/**
+	 * This method validates city.
+	 * throws an exception if the city entered is not valid.
+	 * Network connectivity is required to run this method.
+	 * @param city
+	 * @throws CityInvalidException
+	 * @disclaimer Network connection is required.
+	 */
+	/*
+	 * This method reads an data-set in the form of tsv from the Internet. and checks if the city is present in the file.
+	 * If yes then nothing happens program runs as usual else throws an custom exception.
+	 */
+	public static void validateCity(String city) throws CityInvalidException
+	{
+		try
+		{
+			URL url = new URL("https://raw.githubusercontent.com/adeckmyn/maps/master/data-raw/world.cities.new.tsv");
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+			bufferedReader.readLine();
+			
+			String line;
+			while((line = bufferedReader.readLine()) != null)
+			{
+				String[] cityInfoArray = line.split("\t");
+				if(city.equalsIgnoreCase(cityInfoArray[0].substring(1, (cityInfoArray[0].length() - 1))))
+				{
+					return;
+				}
+			}
+			throw new CityInvalidException("Invalid City : %s".formatted(city));
+		}
+		catch(MalformedURLException mfue)
+		{
+			System.out.println("<%s>".formatted("Invalid URL for the cities dataset"));
+		}
+		catch(IOException ioe)
+		{
+			System.out.println("<Input/Output Exception [%s]>".formatted(ioe.getMessage()));
+			System.out.println("<%s>".formatted("Please check your network connection"));
+		}
+	}
+	
 	/**
 	 * This method validates country.
 	 * Throws an exception if the country entered is not a valid country.
