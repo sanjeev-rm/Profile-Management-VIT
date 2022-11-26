@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
+import exceptions.personExceptions.PersonException;
 import profile.Address;
 import profile.CustomLocalDate;
 import profile.Name;
@@ -26,7 +27,7 @@ public class Employee extends Person implements Profilable<Employee>
     private String responsibility;
     private CustomLocalDate dateOfJoining;
     
-    public Employee(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address adress, String employeeID, String qualification, String responsiblity, CustomLocalDate dateOfJoining)
+    public Employee(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address adress, String employeeID, String qualification, String responsiblity, CustomLocalDate dateOfJoining) throws PersonException
     {
 		super(name, gender, dob, email, mobile, adress);
 		this.employeeID = employeeID;
@@ -103,7 +104,14 @@ public class Employee extends Person implements Profilable<Employee>
     	System.out.println("DATE OF JOINING");
     	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
     	
-    	return new Employee(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), employeeID, qualification, responsibility, dateOfJoining);
+    	try
+    	{
+    		return new Employee(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), employeeID, qualification, responsibility, dateOfJoining);
+    	}
+    	catch(PersonException pe)
+    	{
+    	}
+    	return null;
     }
     
     
@@ -172,64 +180,74 @@ public class Employee extends Person implements Profilable<Employee>
 	{
 		Scanner sc = new Scanner(System.in);
 		
-		switch(option)
+		while(true)
 		{
-		case 1 :
-			System.out.println("Enter updated name : ");
-			Name newName = Name.inputUserInfo();
-			this.setName(newName);
-			break;
+			try
+			{
+				switch(option)
+				{
+				case 1 :
+					System.out.println("Enter updated name : ");
+					Name newName = Name.inputUserInfo();
+					this.setName(newName);
+					break;
 
-		case 2 :
-			System.out.print("Enter new Gender : ");
-			this.setGender(sc.nextLine());
-			break;
+				case 2 :
+					System.out.print("Enter new Gender : ");
+					this.setGender(sc.nextLine());
+					break;
 
-		case 3 :
-			System.out.print("Enter new DOB");
-			CustomLocalDate dob = CustomLocalDate.inputDate();
-			this.setDob(dob);
-			break;
+				case 3 :
+					System.out.print("Enter new DOB");
+					CustomLocalDate dob = CustomLocalDate.inputDate();
+					this.setDob(dob);
+					break;
 
-		case 4 :
-			System.out.print("Enter updated Email : ");
-			this.setEmail(sc.nextLine());
-			break;
+				case 4 :
+					System.out.print("Enter updated Email : ");
+					this.setEmail(sc.nextLine());
+					break;
 
-		case 5 :
-			System.out.print("Enter updated mobile number : ");
-			this.setMobile(sc.nextLine());
-			break;
+				case 5 :
+					System.out.print("Enter updated mobile number : ");
+					this.setMobile(sc.nextLine());
+					break;
 
-		case 6 :
-			System.out.println("Enter updated Address");
-			Address address = Address.inputUserInfo();
-			this.setAddress(address);
-			break;
+				case 6 :
+					System.out.println("Enter updated Address");
+					Address address = Address.inputUserInfo();
+					this.setAddress(address);
+					break;
 
-		case 7 :
-			System.out.print("Enter updated Employee ID : ");
-			this.setEmployeeID(sc.nextLine());
-			break;
+				case 7 :
+					System.out.print("Enter updated Employee ID : ");
+					this.setEmployeeID(sc.nextLine());
+					break;
 
-		case 8 :
-			System.out.print("Enter updated qualification : ");
-			this.setQualification(sc.nextLine());
-			break;
+				case 8 :
+					System.out.print("Enter updated qualification : ");
+					this.setQualification(sc.nextLine());
+					break;
 
-		case 9 :
-			System.out.print("Enter updated responsibility : ");
-			this.setResponsiblity(sc.nextLine());
-			break;
+				case 9 :
+					System.out.print("Enter updated responsibility : ");
+					this.setResponsiblity(sc.nextLine());
+					break;
 
-		case 10 :
-			System.out.print("Enter updated date of joining");
-	    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
-	    	this.setDateOfJoining(dateOfJoining);
-			break;
+				case 10 :
+					System.out.print("Enter updated date of joining");
+			    	CustomLocalDate dateOfJoining = CustomLocalDate.inputDate();
+			    	this.setDateOfJoining(dateOfJoining);
+					break;
 
-		default :
-			System.out.print("WHAAAT???");
+				default :
+					System.out.print("WHAAAT???");
+				}
+			}
+			catch(PersonException pe)
+			{
+				System.out.println("<%s>".formatted(pe.getMessage()));
+			}
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import exceptions.OptionInvalidException;
+import exceptions.personExceptions.PersonException;
 import profile.Address;
 import profile.CustomLocalDate;
 import profile.Name;
@@ -31,7 +32,7 @@ public class Student extends Person implements Profilable<Student>
     private Boolean isHosteller;
     private Integer expectedYearOfGraduation;
     
-    public Student(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation) throws StudentException
+    public Student(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String registrationNumber, String program, String branch, String school, Boolean isHosteller, Integer expectedYearOfGraduation) throws StudentException, PersonException
 	{
     	super(name, gender, dob, email, mobile, address);
     	
@@ -186,14 +187,14 @@ public class Student extends Person implements Profilable<Student>
     	
     	/*
 		 * Writing nothing inside the catch block because while creating this object the properties are already verified.
-		 * Therefore this would never throw StudentException.
+		 * Therefore this would never throw StudentException or PersonException.
 		 * This is trying to create like try! in swift.
 		 */
     	try
     	{
     		return new Student(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), registrationNumber, program, branch, school, isHosteller, expectedYearOfGraduation);
     	}
-    	catch(StudentException se)
+    	catch(StudentException | PersonException e)
     	{
     	}
     	return null; // As already mentioned therefore, will never return null. It will never reach this code. It'll just execute try block completely.
@@ -265,107 +266,111 @@ public class Student extends Person implements Profilable<Student>
 	{
 		Scanner sc = new Scanner(System.in);
 		
-		switch(option)
+		while(true)
 		{
-		case 1 :
-			System.out.println("Enter updated name : ");
-			Name newName = Name.inputUserInfo();
-			this.setName(newName);
-			break;
-
-		case 2 :
-			System.out.print("Enter new Gender : ");
-			this.setGender(sc.nextLine());
-			break;
-
-		case 3 :
-			System.out.print("Enter new DOB");
-			CustomLocalDate dob = CustomLocalDate.inputDate();
-			this.setDob(dob);
-			break;
-
-		case 4 :
-			System.out.print("Enter updated Email : ");
-			this.setEmail(sc.nextLine());
-			break;
-
-		case 5 :
-			System.out.print("Enter updated mobile number : ");
-			this.setMobile(sc.nextLine());
-			break;
-
-		case 6 :
-			System.out.println("Enter updated Address");
-			Address address = Address.inputUserInfo();
-			this.setAddress(address);
-			break;
-
-		case 7 :
-			while(true)
+			try
 			{
-				try
+				switch(option)
 				{
+				case 1 :
+					System.out.println("Enter updated name : ");
+					Name newName = Name.inputUserInfo();
+					this.setName(newName);
+					break;
+
+				case 2 :
+					System.out.print("Enter new Gender : ");
+					this.setGender(sc.nextLine());
+					break;
+
+				case 3 :
+					System.out.print("Enter new DOB");
+					CustomLocalDate dob = CustomLocalDate.inputDate();
+					this.setDob(dob);
+					break;
+
+				case 4 :
+					System.out.print("Enter updated Email : ");
+					this.setEmail(sc.nextLine());
+					break;
+
+				case 5 :
+					System.out.print("Enter updated mobile number : ");
+					this.setMobile(sc.nextLine());
+					break;
+
+				case 6 :
+					System.out.println("Enter updated Address");
+					Address address = Address.inputUserInfo();
+					this.setAddress(address);
+					break;
+
+				case 7 :
 					System.out.print("Enter updated Registration Number : ");
 					this.setRegistrationNumber(sc.nextLine());
 					break;
-				}
-				catch(StudentException se)
-				{
-					System.out.println("<%s>".formatted(se.getMessage()));
-				}
-			}
-			break;
 
-		case 8 :
-			System.out.print("Enter updated program : ");
-			this.setProgram(sc.nextLine());
-			break;
-			
-		case 9 :
-			System.out.print("Enter updated branch : ");
-			this.setBranch(sc.nextLine());
-			break;
-			
-		case 10 :
-			System.out.print("Enter updated school : ");
-			this.setSchool(sc.nextLine());
-			break;
-
-		case 11 :
-			System.out.print("Enter 'Y' if hosteller and 'N' if not : ");
-			String input = sc.next();
-			if(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES"))
-	    	{
-	    		this.setIsHosteller(true);
-	    	}
-	    	else
-	    	{
-	    		this.setIsHosteller(false);
-	    	}
-			break;
-			
-		case 12 :
-			while(true)
-			{
-				System.out.print("Enter updated year of graduation : ");
-				try
-				{
-					this.setExpectedYearOfGraduation(sc.nextInt());
+				case 8 :
+					System.out.print("Enter updated program : ");
+					this.setProgram(sc.nextLine());
 					break;
-				}
-				catch(InputMismatchException ime)
-				{
-					System.out.println("~~~~~~Please eneter an integer~~~~~");
-				}
-				finally
-				{
-					sc.nextLine();
-				}
-			}
-			break;
+					
+				case 9 :
+					System.out.print("Enter updated branch : ");
+					this.setBranch(sc.nextLine());
+					break;
+					
+				case 10 :
+					System.out.print("Enter updated school : ");
+					this.setSchool(sc.nextLine());
+					break;
 
-		default :
-			System.out.print("WHAAAT???");
+				case 11 :
+					System.out.print("Enter 'Y' if hosteller and 'N' if not : ");
+					String input = sc.next();
+					if(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("YES"))
+			    	{
+			    		this.setIsHosteller(true);
+			    	}
+			    	else
+			    	{
+			    		this.setIsHosteller(false);
+			    	}
+					break;
+					
+				case 12 :
+					while(true)
+					{
+						System.out.print("Enter updated year of graduation : ");
+						try
+						{
+							this.setExpectedYearOfGraduation(sc.nextInt());
+							break;
+						}
+						catch(InputMismatchException ime)
+						{
+							System.out.println("~~~~~~Please eneter an integer~~~~~");
+						}
+						finally
+						{
+							sc.nextLine();
+						}
+					}
+					break;
+
+				default :
+					System.out.print("WHAAAT???");
+				}
+				break;
+			}
+			catch(PersonException pe)
+			{
+				System.out.println("<%s>".formatted(pe.getMessage()));
+			}
+			catch(StudentException se)
+			{
+				System.out.println("<%s>".formatted(se.getMessage()));
+			}
 		}
 	}
     

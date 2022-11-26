@@ -11,6 +11,7 @@ import profile.Name;
 import profile.Person;
 import profile.Profilable;
 import exceptions.OptionInvalidException;
+import exceptions.personExceptions.PersonException;
 
 /**
  * This class represents an profile of an Alumni of VIT.
@@ -25,7 +26,7 @@ public class Alumni extends Person implements Profilable<Alumni>
     private String degree;
     private String currentResidingPlace;
     
-    public Alumni(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String alumniID, Integer yearOfGraduation, String degree, String currentResidingPlace)
+    public Alumni(Name name, String gender, CustomLocalDate dob, String email, String mobile, Address address, String alumniID, Integer yearOfGraduation, String degree, String currentResidingPlace) throws PersonException
     {
 		super(name, gender, dob, email, mobile, address);
 		this.alumniID = alumniID;
@@ -117,7 +118,14 @@ public class Alumni extends Person implements Profilable<Alumni>
     	System.out.printf("%-30s : ", "CURRENT RESIDING PLACE");
     	String currentResidingPlace = sc.nextLine();
     	
-    	return new Alumni(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), alumniId, yearOfGarduation, degree, currentResidingPlace);
+    	try
+    	{
+    		return new Alumni(person.getName(), person.getGender(), person.getDob(), person.getEmail(), person.getMobile(), person.getAddress(), alumniId, yearOfGarduation, degree, currentResidingPlace);
+    	}
+    	catch(PersonException pe)
+    	{
+    	}
+    	return null;
     }
     
     
@@ -186,78 +194,88 @@ public class Alumni extends Person implements Profilable<Alumni>
 	{
 		Scanner sc = new Scanner(System.in);
 		
-		switch(option)
+		while(true)
 		{
-		case 1 :
-			System.out.println("Enter updated name : ");
-			Name newName = Name.inputUserInfo();
-			this.setName(newName);
-			break;
-
-		case 2 :
-			System.out.print("Enter new Gender : ");
-			this.setGender(sc.nextLine());
-			break;
-
-		case 3 :
-			System.out.print("Enter new DOB");
-			CustomLocalDate dob = CustomLocalDate.inputDate();
-			this.setDob(dob);
-			break;
-
-		case 4 :
-			System.out.print("Enter updated Email : ");
-			this.setEmail(sc.nextLine());
-			break;
-
-		case 5 :
-			System.out.print("Enter updated mobile number : ");
-			this.setMobile(sc.nextLine());
-			break;
-
-		case 6 :
-			System.out.println("Enter updated Address");
-			Address address = Address.inputUserInfo();
-			this.setAddress(address);
-			break;
-
-		case 7 :
-			System.out.print("Enter updated Alumni ID : ");
-			this.setAlumniID(sc.nextLine());
-			break;
-
-		case 8 :
-			while(true)
+			try
 			{
-				System.out.print("Enter updated year of graduation : ");
-				try
+				switch(option)
 				{
-					this.setYearOfGraduation(sc.nextInt());
+				case 1 :
+					System.out.println("Enter updated name : ");
+					Name newName = Name.inputUserInfo();
+					this.setName(newName);
 					break;
-				}
-				catch(InputMismatchException ime)
-				{
-					System.out.println("~~~~~~Please eneter an integer~~~~~");
-				}
-				finally
-				{
-					sc.nextLine();
+
+				case 2 :
+					System.out.print("Enter new Gender : ");
+					this.setGender(sc.nextLine());
+					break;
+
+				case 3 :
+					System.out.print("Enter new DOB");
+					CustomLocalDate dob = CustomLocalDate.inputDate();
+					this.setDob(dob);
+					break;
+
+				case 4 :
+					System.out.print("Enter updated Email : ");
+					this.setEmail(sc.nextLine());
+					break;
+
+				case 5 :
+					System.out.print("Enter updated mobile number : ");
+					this.setMobile(sc.nextLine());
+					break;
+
+				case 6 :
+					System.out.println("Enter updated Address");
+					Address address = Address.inputUserInfo();
+					this.setAddress(address);
+					break;
+
+				case 7 :
+					System.out.print("Enter updated Alumni ID : ");
+					this.setAlumniID(sc.nextLine());
+					break;
+
+				case 8 :
+					while(true)
+					{
+						System.out.print("Enter updated year of graduation : ");
+						try
+						{
+							this.setYearOfGraduation(sc.nextInt());
+							break;
+						}
+						catch(InputMismatchException ime)
+						{
+							System.out.println("~~~~~~Please eneter an integer~~~~~");
+						}
+						finally
+						{
+							sc.nextLine();
+						}
+					}
+					break;
+					
+				case 9 :
+					System.out.print("Enter updated degree : ");
+					this.setDegree(sc.nextLine());
+					break;
+
+				case 10 :
+					System.out.print("Enter updated current residing place : ");
+					this.setCurrentResidingPlace(sc.nextLine());
+					break;
+
+				default :
+					System.out.print("WHAAAT???");
 				}
 			}
-			break;
-			
-		case 9 :
-			System.out.print("Enter updated degree : ");
-			this.setDegree(sc.nextLine());
-			break;
-
-		case 10 :
-			System.out.print("Enter updated current residing place : ");
-			this.setCurrentResidingPlace(sc.nextLine());
-			break;
-
-		default :
-			System.out.print("WHAAAT???");
+			catch(PersonException pe)
+			{
+				System.out.println("<%s>".formatted(pe.getMessage()));
+			}
 		}
 	}
 	
